@@ -4,7 +4,8 @@ const GoogleStrategy = require('passport-google-oauth20').Strategy;
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 
-const app = express();
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 app.use(express.static('public')); // Serve static files from the 'public' directory
 
@@ -20,6 +21,17 @@ passport.use(new GoogleStrategy({
   }
 ));
 
+
+
+const firebaseConfig = {
+    apiKey: "AIzaSyAdEU8mqsQMhM8i816F0NizCLqjuZbzvPo",
+    authDomain: "blend-net-ai-quiz-app.firebaseapp.com",
+    projectId: "blend-net-ai-quiz-app",
+    storageBucket: "blend-net-ai-quiz-app.appspot.com",
+    messagingSenderId: "1040439869248",
+    appId: "1:1040439869248:web:defd45b1b24d0e62f784a5",
+    measurementId: "G-7930K2WQ0R"
+  };
 // Initialize Passport
 app.use(passport.initialize());
 
